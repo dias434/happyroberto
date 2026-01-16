@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: happyroberto-postgres
+    environment:
+      POSTGRES_PASSWORD: dias
+      POSTGRES_USER: postgres
+      POSTGRES_DB: happyroberto
+    ports:
+      - "5432:5432"
+    volumes:
+      - happyroberto_pgdata:/var/lib/postgresql/data
+
+volumes:
+  happyroberto_pgdata:
+

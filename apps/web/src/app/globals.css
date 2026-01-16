@@ -1,0 +1,109 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+@layer utilities {
+  .bg-birthday {
+    background:
+      radial-gradient(900px circle at 18% 10%, rgba(56, 189, 248, 0.18), transparent 60%),
+      radial-gradient(900px circle at 82% 18%, rgba(16, 185, 129, 0.16), transparent 60%),
+      radial-gradient(800px circle at 60% 85%, rgba(99, 102, 241, 0.12), transparent 62%),
+      linear-gradient(180deg, #f8fafc 0%, #eef2ff 45%, #ecfeff 100%);
+  }
+
+  .birthday-sparkles {
+    opacity: 0.28;
+    mix-blend-mode: soft-light;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.85) 0 1px, transparent 2px),
+      radial-gradient(circle at 75% 40%, rgba(255, 255, 255, 0.65) 0 1px, transparent 2px),
+      radial-gradient(circle at 35% 70%, rgba(255, 255, 255, 0.7) 0 1px, transparent 2px),
+      radial-gradient(circle at 60% 20%, rgba(255, 255, 255, 0.65) 0 1px, transparent 2px),
+      radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.7) 0 1px, transparent 2px);
+    background-size: 320px 320px;
+    animation: birthday-sparkles-drift 18s linear infinite;
+  }
+
+  .birthday-blob {
+    opacity: 0.55;
+    animation: birthday-blob-float 14s ease-in-out infinite;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .birthday-blob--blue {
+    background: rgba(56, 189, 248, 0.28);
+  }
+
+  .birthday-blob--green {
+    background: rgba(16, 185, 129, 0.22);
+    animation-duration: 16s;
+  }
+
+  .birthday-blob--indigo {
+    background: rgba(99, 102, 241, 0.2);
+    animation-duration: 18s;
+  }
+
+  .birthday-confetti-piece {
+    position: absolute;
+    top: -15%;
+    left: var(--left);
+    width: var(--w);
+    height: var(--h);
+    background: var(--bg);
+    opacity: 0.42;
+    border-radius: 6px;
+    box-shadow: 0 14px 32px rgba(2, 6, 23, 0.06);
+    transform: translate3d(0, 0, 0) rotate(var(--r));
+    animation: birthday-confetti-fall var(--d) linear infinite;
+    animation-delay: var(--delay);
+  }
+}
+
+@keyframes birthday-sparkles-drift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 380px 760px;
+  }
+}
+
+@keyframes birthday-blob-float {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 18px, 0) scale(1.02);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes birthday-confetti-fall {
+  0% {
+    transform: translate3d(0, -25vh, 0) rotate(var(--r));
+  }
+  100% {
+    transform: translate3d(0, 120vh, 0) rotate(calc(var(--r) + 320deg));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birthday-sparkles,
+  .birthday-blob,
+  .birthday-confetti-piece {
+    animation: none !important;
+  }
+}

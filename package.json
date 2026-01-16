@@ -1,0 +1,13 @@
+{
+  "name": "happyroberto",
+  "private": true,
+  "scripts": {
+    "install:web": "npm --prefix apps/web install",
+    "install:all": "npm run install:web",
+    "dev:web": "npm --prefix apps/web run dev",
+    "build:web": "npm --prefix apps/web run build",
+    "db:generate": "npm --prefix apps/web run prisma:generate",
+    "db:migrate": "npm --prefix apps/web run prisma:migrate",
+    "db:deploy": "npm --prefix apps/web run prisma:deploy"
+  }
+}
