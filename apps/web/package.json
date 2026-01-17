@@ -2,10 +2,11 @@
   "name": "@happyroberto/web",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
-    "build": "next build",
-    "start": "next start -p 3000",
-    "lint": "next lint",
+    "install:web": "npm --prefix apps/web install",
+    "build": "next build:web",
+    "dev": "npm run dev:web",
+    "lint": "npm --prefix apps/web run lint",
+    "start": "npm --prefix apps/web run start",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "node scripts/ensure-prisma-env.mjs --required && prisma migrate dev",
     "prisma:deploy": "node scripts/ensure-prisma-env.mjs --required && prisma migrate deploy"
