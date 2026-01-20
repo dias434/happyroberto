@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 type CreateRsvpBody = {
@@ -51,22 +52,58 @@ export async function POST(req: Request) {
   const phone = asOptionalTrimmedString(body.phone, 40);
   const guests = asGuests(body.guests);
 
-  const created = await prisma.rsvp.create({
-    data: {
-      name,
-      phone,
-      guestNames: guests,
-      guests: guests.length ? { create: guests.map((guestName) => ({ name: guestName })) } : undefined
-    },
-    select: {
-      id: true,
-      name: true,
-      phone: true,
-      guestNames: true,
-      createdAt: true,
-      guests: { select: { id: true, name: true } }
-    }
-  });
+  try {
+    const created = await prisma.rsvp.create({
+      data: {
+        name,
+        phone,
+        guestNames: guests,
+        guests: guests.length ? { create: guests.map((guestName) => ({ name: guestName })) } : undefined
+      },
+      select: {
+        id: true,
+        name: true,
+        phone: true,
+        guestNames: true,
+        createdAt: true,
+        guests: { select: { id: true, name: true } }
+      }
+    });
 
-  return NextResponse.json(created, { status: 201 });
+    return NextResponse.json(created, { status: 201 });
+  } catch (error) {
+    // Backwards-compatible fallback for older DBs that don't have `guestNames` yet.
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2022") {
+      const created = await prisma.rsvp.create({
+        data: {
+          name,
+          phone,
+          guests: guests.length ? { create: guests.map((guestName) => ({ name: guestName })) } : undefined
+        },
+        select: {
+          id: true,
+          name: true,
+          phone: true,
+          createdAt: true,
+          guests: { select: { id: true, name: true } }
+        }
+      });
+
+      return NextResponse.json(created, { status: 201 });
+    }
+
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2021") {
+      console.error("RSVP DB schema missing (table not found).", error);
+      return NextResponse.json(
+        {
+          message:
+            "Banco de dados ainda n\u00e3o foi inicializado (tabelas ausentes). Rode o sync do Prisma no deploy (ex: `prisma db push`)."
+        },
+        { status: 503 }
+      );
+    }
+
+    console.error("Failed to create RSVP.", error);
+    return NextResponse.json({ message: "Erro interno ao confirmar presen\u00e7a." }, { status: 500 });
+  }
 }
