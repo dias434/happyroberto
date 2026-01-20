@@ -33,6 +33,15 @@ function asGuests(value: unknown): string[] {
 }
 
 export async function POST(req: Request) {
+  const hasDbEnv =
+    Boolean(process.env.POSTGRES_PRISMA_URL) && Boolean(process.env.POSTGRES_URL_NON_POOLING);
+  if (!hasDbEnv) {
+    return NextResponse.json(
+      { message: "Banco de dados não configurado (envs do Postgres ausentes)." },
+      { status: 503 }
+    );
+  }
+
   const body = (await req.json().catch(() => null)) as CreateRsvpBody | null;
   if (!body) return NextResponse.json({ message: "JSON inválido." }, { status: 400 });
 
