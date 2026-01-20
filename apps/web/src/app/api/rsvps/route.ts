@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
+import { isDbConfigured, prisma } from "@/lib/prisma";
 
 type CreateRsvpBody = {
   name?: unknown;
@@ -34,11 +34,13 @@ function asGuests(value: unknown): string[] {
 }
 
 export async function POST(req: Request) {
-  const hasDbEnv =
-    Boolean(process.env.POSTGRES_PRISMA_URL) && Boolean(process.env.POSTGRES_URL_NON_POOLING);
+  const hasDbEnv = isDbConfigured;
   if (!hasDbEnv) {
     return NextResponse.json(
-      { message: "Banco de dados não configurado (envs do Postgres ausentes)." },
+      {
+        message:
+          "Banco de dados não configurado (env ausente). Configure `POSTGRES_PRISMA_URL` (ou `POSTGRES_URL` / `DATABASE_URL`) na Vercel."
+      },
       { status: 503 }
     );
   }
