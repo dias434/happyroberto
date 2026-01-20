@@ -12,6 +12,7 @@ model Rsvp {
   id          String   @id @default(cuid())
   name        String
   phone       String?
+  guestsCount Int?
   guestNames  String[] @default([])
   createdAt   DateTime @default(now())
   guests      RsvpGuest[]
