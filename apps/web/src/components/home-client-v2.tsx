@@ -344,7 +344,7 @@ export default function HomeClientV2({ photoUrl }: Props) {
 
       <section ref={rsvpRef} className="bg-gradient-to-r from-black via-slate-950 to-black">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 md:py-32">
-          <div className="overflow-hidden rounded-3xl border border-white/10 bg-black p-7 shadow-xl shadow-black/30 sm:p-10 md:p-14">
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-black p-5 shadow-xl shadow-black/30 sm:p-10 md:p-14">
             <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">
               Confirmar presença
             </h2>
@@ -352,14 +352,14 @@ export default function HomeClientV2({ photoUrl }: Props) {
               Preencha os dados para registrar sua confirmação.
             </p>
 
-            <form className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 md:max-w-3xl" onSubmit={onSubmit}>
+            <form className="mt-8 grid w-full gap-4 sm:mt-10 sm:gap-5 md:max-w-3xl" onSubmit={onSubmit}>
               <label className="grid gap-2">
                 <span className="text-base font-medium text-white/80">Nome completo *</span>
                 <input
                   value={form.name}
                   onChange={(e) => setForm((s) => ({ ...s, name: e.target.value }))}
                   required
-                  className="w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-base text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/20 sm:px-5 sm:py-4"
+                  className="w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/20 sm:px-5 sm:py-4 sm:text-base"
                   placeholder="Seu nome"
                 />
               </label>
@@ -370,20 +370,20 @@ export default function HomeClientV2({ photoUrl }: Props) {
                   <input
                     value={form.phone}
                     onChange={(e) => setForm((s) => ({ ...s, phone: e.target.value }))}
-                    className="w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-base text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/20 sm:px-5 sm:py-4"
+                    className="w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/20 sm:px-5 sm:py-4 sm:text-base"
                     placeholder="(11) 99999-9999"
                   />
                 </label>
 
                 <div className="grid gap-2">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:flex-wrap sm:items-center">
                     <span className="text-base font-medium text-white/80">Acompanhantes</span>
                     <button
                       type="button"
                       onClick={addGuest}
-                      className="text-base font-semibold text-white/80 hover:text-white"
+                      className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 hover:bg-white/10 sm:w-auto sm:px-3 sm:text-base"
                     >
-                      + adicionar
+                      + Adicionar
                     </button>
                   </div>
 
@@ -404,7 +404,7 @@ export default function HomeClientV2({ photoUrl }: Props) {
                                   guests: s.guests.map((g, i) => (i === index ? e.target.value : g))
                                 }))
                               }
-                              className="w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-base text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/20 sm:px-5 sm:py-4"
+                              className="w-full rounded-xl border border-white/15 bg-black px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/20 sm:px-5 sm:py-4 sm:text-base"
                               placeholder={`Acompanhante ${index + 1}`}
                             />
                           </label>
@@ -412,15 +412,15 @@ export default function HomeClientV2({ photoUrl }: Props) {
                           <button
                             type="button"
                             onClick={() => removeGuest(index)}
-                            className="w-full rounded-xl border border-white/10 bg-white/0 px-4 py-3 text-base font-semibold text-white/80 hover:bg-white/10 hover:text-white sm:px-5 sm:py-4 md:w-auto"
+                            className="w-full rounded-xl border border-white/10 bg-white/0 px-4 py-3 text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white sm:px-5 sm:py-4 sm:text-base md:w-auto"
                           >
                             Remover
                           </button>
                         </div>
                       ))
                     ) : (
-                      <div className="flex w-full items-center rounded-xl border border-white/15 bg-black px-4 py-3 text-base text-white/60 sm:px-5 sm:py-4">
-                        <span className="min-w-0 truncate whitespace-nowrap">Clique em adicionar para incluir acompanhantes.</span>
+                      <div className="flex w-full items-center rounded-xl border border-white/15 bg-black px-4 py-3 text-sm text-white/60 sm:px-5 sm:py-4 sm:text-base">
+                        <span className="min-w-0 truncate">Clique em adicionar para incluir acompanhantes.</span>
                       </div>
                     )}
                   </div>

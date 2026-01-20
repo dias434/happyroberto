@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const hasDbEnv =
     Boolean(process.env.POSTGRES_PRISMA_URL) && Boolean(process.env.POSTGRES_URL_NON_POOLING);

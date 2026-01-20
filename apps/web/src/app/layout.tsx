@@ -6,6 +6,11 @@ export const metadata = {
   description: "RSVP do aniversário do Roberto"
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
