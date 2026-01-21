@@ -1,6 +1,11 @@
 import { spawnSync } from "node:child_process";
 
-const prismaUrl = process.env.POSTGRES_PRISMA_URL ?? process.env.POSTGRES_URL ?? process.env.DATABASE_URL ?? null;
+const prismaUrl =
+  process.env.POSTGRES_PRISMA_URL ??
+  process.env.POSTGRES_URL ??
+  process.env.POSTGRES_URL_NON_POOLING ??
+  process.env.DATABASE_URL ??
+  null;
 
 if (!prismaUrl) {
   console.log("Skipping `prisma db push` (Postgres envs missing).");

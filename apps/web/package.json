@@ -2,11 +2,10 @@
   "name": "@happyroberto/web",
   "private": true,
   "scripts": {
-    "install:web": "npm --prefix apps/web install",
     "build": "prisma generate && node scripts/prisma-db-push-if-configured.mjs && next build",
-    "dev": "npm run dev:web",
-    "lint": "npm --prefix apps/web run lint",
-    "start": "npm --prefix apps/web run start",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "node scripts/ensure-prisma-env.mjs --required && prisma migrate dev",
     "prisma:deploy": "node scripts/ensure-prisma-env.mjs --required && prisma migrate deploy"

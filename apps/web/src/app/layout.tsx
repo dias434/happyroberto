@@ -2,7 +2,7 @@ import "./globals.css";
 import type { ReactNode } from "react";
 
 export const metadata = {
-  title: "Roberto Carlos faz 50!",
+  title: "ROBERTO CARLOS - 50 ANOS!",
   description: "RSVP do aniversário do Roberto"
 };
 

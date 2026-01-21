@@ -111,9 +111,14 @@ export default function HomeClientV2({ photoUrl }: Props) {
         <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-12 md:pb-16 md:pt-20">
           <div className="grid gap-10 md:grid-cols-[1.15fr_0.85fr] md:items-center">
             <div>
-              <p className="text-sm font-medium tracking-wide text-indigo-700">Aniversário</p>
+              <p className="text-lg font-semibold tracking-wide text-indigo-700 md:text-xl">DIA DE GRATIDÃO</p>
+              <p className="mt-2 max-w-xl text-base font-medium leading-relaxed text-slate-800 md:text-lg">
+                “Bendize, ó minha alma, ao Senhor, e não te esqueças de nem um só de seus benefícios” (Salmos 103.2).
+              </p>
               <h1 className="mt-3 text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:text-6xl">
-                Roberto Carlos faz 50! Venha comemorar comigo.
+                {"ROBERTO CARLOS -"}
+                <br />
+                <span className="whitespace-nowrap">50&nbsp;ANOS!</span>
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 md:text-lg">
                 Confirme sua presença e veja tudo sobre o evento.
@@ -139,11 +144,13 @@ export default function HomeClientV2({ photoUrl }: Props) {
               <div className="mt-10 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-2xl border border-blue-200/80 bg-blue-100 p-6 shadow-sm shadow-blue-900/10">
                   <p className="text-sm font-medium tracking-wide text-blue-900">Data</p>
-                  <p className="mt-2 text-xl font-semibold text-slate-900">07/02/2026 (sábado) • 12h30</p>
+                  <p className="mt-2 text-lg font-semibold text-slate-900">07/02/2026 (sábado) • 12h30</p>
                 </div>
                 <div className="rounded-2xl border border-emerald-200/80 bg-emerald-100 p-6 shadow-sm shadow-emerald-900/10">
-                  <p className="text-sm font-medium tracking-wide text-emerald-900">Condomínio</p>
-                  <p className="mt-2 text-xl font-semibold text-slate-900">Cond. de Chácaras Recanto d'Italia</p>
+                  <p className="text-sm font-medium tracking-wide text-emerald-900">Local</p>
+                  <p className="mt-2 text-lg font-semibold text-slate-900">
+                    {"Condomínio de Chácaras Recanto D'Itália - Santo Antônio de Goiás."}
+                  </p>
                 </div>
               </div>
 
@@ -230,9 +237,11 @@ export default function HomeClientV2({ photoUrl }: Props) {
                   </div>
                   <div>
                     <p className="text-base font-semibold tracking-wide text-slate-900">Hora &amp; ritmo</p>
-                    <p className="mt-1 text-2xl font-semibold text-slate-900">{"A partir das 12h30"}</p>
+                    <p className="mt-1 text-2xl font-semibold text-slate-900">
+                      A partir das 12h30 - Chega mais minha gente!
+                    </p>
                     <p className="mt-2 text-base leading-relaxed text-slate-700">
-                      {"Come\u00e7a \u00e0s 12h30 e vai at\u00e9 cansar. Chega com calma e fica o tempo que quiser."}
+                      Comida boa rolando, música ao vivo tocando e a gente aproveitando. Chega mais e fique à vontade.
                     </p>
                   </div>
                 </div>
@@ -260,7 +269,7 @@ export default function HomeClientV2({ photoUrl }: Props) {
                   <div>
                     <p className="mt-1 text-2xl font-semibold text-slate-900">Bebida</p>
                     <p className="mt-2 text-base leading-relaxed text-slate-700">
-                      {"Levar sua bebida preferida para garantir o que mais gosta."}
+                      Levar refrigerante ou suco de sua preferência
                     </p>
                   </div>
                 </div>
