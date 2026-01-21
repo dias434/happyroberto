@@ -120,6 +120,21 @@ export default function HomeClientV2({ photoUrl }: Props) {
                 <br />
                 <span className="whitespace-nowrap">50&nbsp;ANOS!</span>
               </h1>
+
+              <div className="mt-8 flex justify-center md:hidden">
+                <div className="aspect-square w-full max-w-sm overflow-hidden rounded-3xl shadow-sm shadow-slate-900/10 sm:max-w-md">
+                  <Image
+                    src={photoUrl}
+                    alt="Roberto"
+                    width={1200}
+                    height={1200}
+                    priority
+                    unoptimized={isRemotePhoto}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+
               <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 md:text-lg">
                 Confirme sua presença e veja tudo sobre o evento.
               </p>
@@ -156,7 +171,7 @@ export default function HomeClientV2({ photoUrl }: Props) {
 
             </div>
 
-            <div className="flex justify-center md:justify-end">
+            <div className="hidden justify-center md:flex md:justify-end">
               <div className="mt-12 aspect-square w-full max-w-sm overflow-hidden rounded-3xl shadow-sm shadow-slate-900/10 sm:max-w-md md:mt-20">
                 <Image
                   src={photoUrl}
